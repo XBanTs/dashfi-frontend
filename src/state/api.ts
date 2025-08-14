@@ -1,35 +1,42 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { GetKpisResponse, GetProductsResponse, GetTransactionsResponse } from "./types";
+import {
+  GetKpisResponse,
+  GetProductsResponse,
+  GetTransactionsResponse,
+} from "./types";
 
-// Determine the base URL based on environment
+// Base URL for API calls
 const getBaseUrl = () => {
   if (import.meta.env.PROD) {
-    return import.meta.env.VITE_BASE_URL_PROD || 'https://dashfi-backend.onrender.com';
+    // Production backend URL
+    return import.meta.env.VITE_BASE_URL_PROD || "https://dashfi-backend.onrender.com";
   }
-  return import.meta.env.VITE_BASE_URL || 'http://localhost:1337';
+  // Local development backend URL
+  return import.meta.env.VITE_BASE_URL || "http://localhost:9000"; // your local server port
 };
 
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: getBaseUrl() }),
   reducerPath: "main",
+  baseQuery: fetchBaseQuery({ baseUrl: getBaseUrl() }),
   tagTypes: ["Kpis", "Products", "Transactions"],
   endpoints: (build) => ({
     getKpis: build.query<Array<GetKpisResponse>, void>({
-      // Use a leading slash so it concatenates correctly with baseUrl
       query: () => "/kpi/kpis",
-      providesTags: ["Kpis"]
+      providesTags: ["Kpis"],
     }),
     getProducts: build.query<Array<GetProductsResponse>, void>({
-      // Match server route mounting at "/products" and router path "/products"
       query: () => "/products/products",
-      providesTags: ["Products"]
+      providesTags: ["Products"],
     }),
     getTransactions: build.query<Array<GetTransactionsResponse>, void>({
-      // Use a leading slash so it concatenates correctly with baseUrl
       query: () => "/transaction/transactions",
-      providesTags: ["Transactions"]
+      providesTags: ["Transactions"],
     }),
   }),
 });
 
-export const { useGetKpisQuery, useGetProductsQuery, useGetTransactionsQuery } = api;
+export const {
+  useGetKpisQuery,
+  useGetProductsQuery,
+  useGetTransactionsQuery,
+} = api;
