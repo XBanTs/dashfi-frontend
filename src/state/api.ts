@@ -7,12 +7,16 @@ import {
 
 // Base URL for API calls
 const getBaseUrl = () => {
+  const normalize = (u?: string) => (u ? u.replace(/\/$/, "") : u);
   if (import.meta.env.PROD) {
-    // Production backend URL
-    return import.meta.env.VITE_BASE_URL_PROD || "https://dashfi-backend.onrender.com";
+    // Production backend URL (set in Vercel env). Fallback to Render URL.
+    return (
+      normalize(import.meta.env.VITE_BASE_URL_PROD) ||
+      "https://dashfi-backend.onrender.com"
+    );
   }
   // Local development backend URL
-  return import.meta.env.VITE_BASE_URL || "http://localhost:9000"; // your local server port
+  return normalize(import.meta.env.VITE_BASE_URL) || "http://localhost:9000";
 };
 
 export const api = createApi({
