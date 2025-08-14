@@ -272,5 +272,5 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
   <h3>🚀 Built with ❤️ for Financial Excellence</h3>
   <p>Transform your financial data into actionable insights with DashFi</p>
   
-  **[⭐ Star this repository](https://github.com/XBanTs/DashFi)** if you found it helpful!
+  **[⭐ Star this repository](https://github.com/XBanTs/dashfi-frontend)** if you found it helpful!
 </div>
