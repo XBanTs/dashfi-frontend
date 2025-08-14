@@ -4,7 +4,6 @@ import PixIcon from '@mui/icons-material/Pix';
 import { Box, Typography, useTheme } from '@mui/material';
 import FlexBetween from '@/components/FlexBetween';
 
-type Props = {};
 
 const Navbar = () => {
   const { palette } = useTheme();
